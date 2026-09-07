@@ -1,0 +1,4 @@
+import Link from "next/link";
+import { updatePassword } from "../actions";
+
+export default async function ResetPassword({ searchParams }: { searchParams: Promise<{ error?: string }> }) { const params = await searchParams; return <main className="auth-wrap"><section className="auth-card glass"><Link className="brand" href="/"><span className="brand-mark">✦</span> capsule</Link><h1>Choose a new key.</h1><p>Use at least eight characters.</p>{params.error && <p className="form-error">{params.error}</p>}<form action={updatePassword}><div className="field"><label htmlFor="password">New password</label><input id="password" name="password" type="password" minLength={8} required autoComplete="new-password" /></div><button className="button full" type="submit">Update password <span>↗</span></button></form></section></main> }
