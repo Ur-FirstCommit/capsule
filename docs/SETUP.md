@@ -15,7 +15,7 @@ Create a project at supabase.com. Copy Project URL and anon public key from Proj
 
 Easy setup: paste `supabase/schema.sql` into the Supabase SQL Editor and run it.
 
-Development setup: install the Supabase CLI, then run `supabase link --project-ref YOUR_REF` and `supabase db push`. Migrations in `supabase/migrations/` are the source of truth for ongoing development.
+Development setup: install the Supabase CLI, then run `supabase link --project-ref YOUR_REF` and `supabase db push`. The migration entrypoint loads the same SQL as `supabase/schema.sql`.
 
 In Authentication > URL Configuration, set the site URL to `NEXT_PUBLIC_APP_URL` and add `NEXT_PUBLIC_APP_URL/auth/callback` as a redirect URL.
 
