@@ -7,7 +7,7 @@
 - [ ] Resend domain and API key configured
 - [ ] Environment variables configured
 - [ ] App URL configured
-- [ ] Cron/scheduled processing configured
+- [ ] Optional unlock-email scheduler configured
 - [ ] Unlock email tested
 - [ ] Password reset tested
 - [ ] Capsule privacy tested
