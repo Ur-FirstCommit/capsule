@@ -1,0 +1,4 @@
+import Link from "next/link";
+import { resetPassword } from "../actions";
+
+export default async function ForgotPassword({ searchParams }: { searchParams: Promise<{ error?: string; message?: string }> }) { const params = await searchParams; return <main className="auth-wrap"><section className="auth-card glass"><Link className="brand" href="/"><span className="brand-mark">✦</span> capsule</Link><h1>Reset your key.</h1><p>We&apos;ll send a secure link to your inbox.</p>{params.error && <p className="form-error">{params.error}</p>}{params.message && <p className="eyebrow">{params.message}</p>}<form action={resetPassword}><div className="field"><label htmlFor="email">Email</label><input id="email" name="email" type="email" required autoComplete="email" /></div><button className="button full" type="submit">Send reset link <span>↗</span></button></form><div className="auth-footer"><Link href="/login">Back to sign in</Link></div></section></main> }
