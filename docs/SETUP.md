@@ -45,4 +45,4 @@ curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/unlo
 
 ## 9. Deploy
 
-Deploy to Vercel, add all `.env.local` values under Project Settings > Environment Variables, and redeploy. `vercel.json` schedules the unlock worker every 15 minutes on plans supporting Vercel Cron. On another host, schedule `GET /api/cron/unlock` every 15 minutes with `Authorization: Bearer CRON_SECRET`.
+Deploy to Vercel, add the required `.env.local` values under Project Settings > Environment Variables, and redeploy. No Vercel Cron configuration is required to launch the website. The protected `GET /api/cron/unlock` endpoint remains available if you later configure an external scheduler; set `CRON_SECRET` and call it every 15 minutes with `Authorization: Bearer CRON_SECRET` for automatic unlock emails.
