@@ -4,6 +4,5 @@
 node_modules
 coverage
 *.tsbuildinfo
-supabase/
 node_modules
 .opencode/
