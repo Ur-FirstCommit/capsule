@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { isAdminEmail } from "@/lib/env";
+
+export default async function AdminUsersPage() { const supabase = await createClient(); const { data: { user } } = await supabase.auth.getUser(); if (!user || !isAdminEmail(user.email)) redirect("/dashboard"); const admin = createAdminClient(); const { data, error } = await admin.auth.admin.listUsers({ page: 1, perPage: 1000 }); if (error) throw new Error("Unable to load users."); return <section className="content"><header className="dash-head"><div><Link className="subtle" href="/dashboard">← Dashboard</Link><p className="eyebrow">Administration</p><h1>Registered users</h1></div></header><div className="capsule-list">{data.users.map((account) => <article className="capsule-row glass" key={account.id}><div><div className="capsule-title">{account.email || "No email"}</div><div className="capsule-date">Created {new Date(account.created_at).toLocaleString()} · Last sign in {account.last_sign_in_at ? new Date(account.last_sign_in_at).toLocaleString() : "Never"}</div></div><span className={`status ${account.email_confirmed_at ? "" : "sealed"}`}>{account.banned_until ? "banned" : account.email_confirmed_at ? "confirmed" : "unconfirmed"}</span></article>)}</div></section> }
